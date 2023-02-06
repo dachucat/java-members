@@ -11,6 +11,11 @@
     <version>1.0.0</version>
     <dependencies>
         <dependency>
+            <groupId>course.linkflower.link</groupId>
+            <artifactId>common-db-spring-boot-starter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.2.6</version>
