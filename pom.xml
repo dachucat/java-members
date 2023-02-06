@@ -82,6 +82,12 @@
                 <env>test</env>
             </properties>
         </profile>
+        <profile>
+            <id>milk</id>
+            <properties>
+                <env>milk</env>
+            </properties>
+        </profile>
         <!-- 本地环境 -->
         <profile>
             <id>local</id>
