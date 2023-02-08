@@ -13,4 +13,8 @@
 			</if>
 		</where>
 	</update>
+
+	<select id="listAllMenus" resultType="course.linkflower.link.oneframework.members.model.SysRoleMenu">
+		select * from sys_role_menu order by menu_id desc;
+	</select>
 </mapper>
