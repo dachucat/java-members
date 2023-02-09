@@ -6,8 +6,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-public class Memb00ersApp {
+public class MembersApp {
     public static void main(String[] args) {
-        SpringApplication.run(Memb00ersApp.class, args);
+        SpringApplication.run(MembersApp.class, args);
     }
 }
