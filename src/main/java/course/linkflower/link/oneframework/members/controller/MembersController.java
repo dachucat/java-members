@@ -1,6 +1,7 @@
 package course.linkflower.link.oneframework.members.controller;
 
 import course.linkflower.link.oneframework.members.model.SysRoleMenu;
+import course.linkflower.link.oneframework.members.service.SysHeroInfoService;
 import course.linkflower.link.oneframework.members.service.SysRoleMenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,13 @@ public class MembersController {
      */
     @Autowired
     private SysRoleMenuService sysRoleMenuService;
+    private SysHeroInfoService sysHeroInfoServices;
 
     /*
     测试是否登陆
      */
     @DeleteMapping("/isLogin")
+
     public boolean isLogin() {
         return false;
     }
@@ -40,5 +43,9 @@ public class MembersController {
     @GetMapping("getAllMenus")
     public List<SysRoleMenu> getAllMenus() {
         return sysRoleMenuService.getAllMenus();
+    }
+    @GetMapping("getAllHeros")
+    public List<SysRoleMenu> getAllHeros() {
+        return sysHeroInfoServices.getAllMenus();
     }
 }
