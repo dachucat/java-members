@@ -41,6 +41,5 @@ public class MembersController {
     public List<SysRoleMenu> getAllMenus() {
         return sysRoleMenuService.getAllMenus();
     }
-
-    232332
+    
 }
