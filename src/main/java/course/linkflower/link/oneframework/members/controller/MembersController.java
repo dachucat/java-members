@@ -42,11 +42,6 @@ public class MembersController {
 
     @PostMapping("/login")
     public UserInfo login() {
-        asfds
-                asdf
-                adsf
-                        asdf
-                        
         return new UserInfo();
     }
 }
