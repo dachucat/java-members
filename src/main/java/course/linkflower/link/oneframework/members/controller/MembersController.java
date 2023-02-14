@@ -1,13 +1,14 @@
 package course.linkflower.link.oneframework.members.controller;
 
-import course.linkflower.link.oneframework.members.model.SysRoleMenu;
-import course.linkflower.link.oneframework.members.service.SysRoleMenuService;
-import course.linkflower.link.oneframework.members.vo.UserInfo;
+import course.linkflower.link.oneframework.members.dto.members.*;
+import course.linkflower.link.oneframework.members.service.MemberService;
+import course.linkflower.link.oneframework.members.vo.members.MemberInfoVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -15,33 +16,43 @@ import java.util.List;
     Spring boot (完整底层 / 上层都有的框架)
     Spring web  （web 应用， REST）
     Spring cloud    （Spring boot， ）
+    java:
  */
 @RestController
 @Slf4j
 @RequestMapping("/members")
 @RefreshScope
 public class MembersController {
-    /*
-        mvc: model/dao -> service -> controller
-     */
+
     @Autowired
-    private SysRoleMenuService sysRoleMenuService;
+    private MemberService memberService;
 
-    /*
-    测试是否登陆
-     */
-    @DeleteMapping("/isLogin")
-    public boolean isLogin() {
-        return false;
+    //增
+    @PostMapping("/add")
+    public MemberInfoVo add(@RequestBody MemberDto memberDto) {
+        return memberService.add(memberDto);
     }
 
-    @GetMapping("/getAllMenus")
-    public List<SysRoleMenu> getAllMenus() {
-        return sysRoleMenuService.getAllMenus();
+    //查
+    @PostMapping("/update")
+    public void update(@RequestBody MemberUpdateDto memberDto) {
+        memberService.update(memberDto);
+    }
+    //查
+    @PostMapping("/changePassword")
+    public void changePassword(@RequestBody ChangePasswordDto memberDto) {
+        memberService.changePassword(memberDto);
     }
 
-    @PostMapping("/login")
-    public UserInfo login() {
-        return new UserInfo();
+    //删
+    @PostMapping("/delete")
+    public void delete(@RequestBody DeleteDto deleteDto) {
+        memberService.delete(deleteDto);
+    }
+
+    //查
+    @PostMapping("/list")
+    public List<MemberInfoVo> list(@RequestBody ListDto listDto) {
+        return memberService.list(listDto);
     }
 }
