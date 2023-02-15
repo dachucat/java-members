@@ -17,4 +17,6 @@ import lombok.*;
 public class SysRoleMenu extends Model<SysRoleMenu> {
 	private Long roleId;
 	private Long menuId;
+	private Long heroNum;
+	private Long skillNum;
 }
