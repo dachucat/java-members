@@ -3,6 +3,7 @@ package course.linkflower.link.oneframework.members.dao;
 import course.linkflower.link.oneframework.db.mapper.SuperMapper;
 import course.linkflower.link.oneframework.members.dto.members.ListDto;
 import course.linkflower.link.oneframework.members.model.Member;
+import course.linkflower.link.oneframework.members.vo.book.MemberBorrowInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -31,4 +32,6 @@ public interface MemberMapper extends SuperMapper<MemberMapper> {
 	void changePassword(@Param("id") String id, @Param("password")  String password);
 
 	List<Member> list(ListDto listDto);
+
+	List<MemberBorrowInfo> listMemberBorrowInfo(@Param("member_id") long id);
 }
