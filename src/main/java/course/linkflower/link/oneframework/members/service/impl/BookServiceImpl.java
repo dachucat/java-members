@@ -17,6 +17,7 @@ public class BookServiceImpl implements BookService {
     public void putawayBook(PutawayBookDto putawayBookDto) {
 //        是否需要二维码唯一判断？
 //        无法解决bookshelf_id输入问题
+        putawayBookDto.setBookshelfId(1);
         bookMapper.addBook(putawayBookDto);
     }
 }
