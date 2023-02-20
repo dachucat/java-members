@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="course.linkflower.link.oneframework.members.dao.BookMapper">
-    <insert id="addBook">
-        insert into book values(#{bookInforId},"1f-11",null,"正常","now()",null,#{barcode})
-    </insert>
-</mapper>
