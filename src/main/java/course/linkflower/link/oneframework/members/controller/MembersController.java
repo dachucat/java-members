@@ -44,6 +44,9 @@ public class MembersController {
         memberService.changePassword(memberDto);
     }
 
+    public void changeNickname() {}
+
+
     //删
     @PostMapping("/delete")
     public void delete(@RequestBody DeleteDto deleteDto) {
