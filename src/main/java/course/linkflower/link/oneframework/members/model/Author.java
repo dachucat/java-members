@@ -11,7 +11,7 @@ import org.w3c.dom.Text;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @TableName("author")
-public class Author extends Model<Member> {
+public class Author extends Model<Author> {
     private long id;
     private String name;
     private String phone;

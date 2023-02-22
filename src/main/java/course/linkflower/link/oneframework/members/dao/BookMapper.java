@@ -1,48 +1,30 @@
-package course.linkflower.link.oneframework.members.controller;
+package course.linkflower.link.oneframework.members.dao;
 
-import course.linkflower.link.oneframework.members.dto.book.*;
-
+import cn.hutool.core.date.DateTime;
+import course.linkflower.link.oneframework.db.mapper.SuperMapper;
+import course.linkflower.link.oneframework.members.dto.book.AddBookDto;
+import course.linkflower.link.oneframework.members.dto.book.SearchBookDto;
+import course.linkflower.link.oneframework.members.dto.book.UpdateBookDto;
 import course.linkflower.link.oneframework.members.model.Book;
-import course.linkflower.link.oneframework.members.service.BookService;
 
-import course.linkflower.link.oneframework.members.vo.book.BookVo;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
-@RestController
-@Slf4j
-@RequestMapping("/book")
-@RefreshScope
-public class BookController {
-    @Autowired
-    private BookService bookService;
-    @PostMapping("/add")
-    public void add(@RequestBody AddBookDto addBookDto) {
-        bookService.add(addBookDto);
-    }
-    @PostMapping("/delete")
-    public void delete(@RequestBody DeleteBookDto deleteBookDto) {
-        bookService.delete(deleteBookDto);
-    }
-    @PostMapping("/update")
-    public void update(@RequestBody UpdateBookDto updateBookDto) {
-        bookService.update(updateBookDto);
-    }
-    @PostMapping("/search")
-    public List<BookVo> search(@RequestBody SearchBookDto book){
-        return bookService.bookSearch(book);
-    }
+@Mapper
+public interface BookMapper extends SuperMapper<Book> {
+    int save(@Param("bookinforid") long bookInforId,@Param("inlibrarydate") DateTime inLibraryDate);
 
-    @PostMapping("/getBookById")
-    public BookVo getBookById(@RequestBody BookIdDto dto) {
-        return bookService.getBookById(dto.getId());
-    }
+    int delete(@Param("id") long id);
+
+    int update(@Param("bookInfoId") long bookInfoId);
+    Book bookSearchById(@Param("id") long id);
+
+    Book bookSearchByName(@Param("name") String name);
+
+    List<Book> bookSearch(SearchBookDto id);
+
 
 }
