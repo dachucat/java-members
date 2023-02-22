@@ -7,7 +7,6 @@ import course.linkflower.link.oneframework.members.service.MemberService;
 import course.linkflower.link.oneframework.members.vo.members.MemberInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MemberServiceImpl implements MemberService {
@@ -39,7 +38,6 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<MemberInfoVo> list(ListDto listDto) {
-        return new ArrayList<>();
+        return MemberInfoVo.loadFromList(memberMapper.list(listDto));
     }
-    
 }
