@@ -3,14 +3,18 @@ package course.linkflower.link.oneframework.members.service.impl;
 import course.linkflower.link.oneframework.members.dao.BookMapper;
 import course.linkflower.link.oneframework.members.dto.book.AddBookDto;
 import course.linkflower.link.oneframework.members.dto.book.DeleteBookDto;
+import course.linkflower.link.oneframework.members.dto.book.SearchBookDto;
 import course.linkflower.link.oneframework.members.dto.book.UpdateBookDto;
 import course.linkflower.link.oneframework.members.dto.members.ChangePasswordDto;
 import course.linkflower.link.oneframework.members.dto.members.DeleteDto;
 
 import course.linkflower.link.oneframework.members.model.Book;
 import course.linkflower.link.oneframework.members.service.BookService;
+import course.linkflower.link.oneframework.members.vo.book.BookVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -32,8 +36,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book bookSearch(Book book) {
-        bookMapper.bookSearch(book.getId());
-        return book;
+    public List<BookVo> bookSearch(SearchBookDto book) {
+        return BookVo.loadFromList(bookMapper.bookSearch(book));
+    }
+
+    @Override
+    public BookVo getBookById(long id) {
+        return new BookVo().loadFrom(bookMapper.bookSearchById(id));
     }
 }
