@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="course.linkflower.link.oneframework.members.dao.BorrowCardMapper">
+    <insert id="addBorrowCard">
+        insert into borrow_card(client_id,start_date,end_date,status,level,book_count)
+        values(#{clientId},#{startDate},#{endDate},#{status},#{level},#{bookCount})
+    </insert>
+
+    <delete id="deleteBorrowCard">
+        delete from borrow_card where id=#{id}
+    </delete>
+
+<!--    <update id="updateBorrowCard">-->
+<!--        update borrow_card set start_date='2011-11-19' where id=1-->
+<!--    </update>-->
+</mapper>

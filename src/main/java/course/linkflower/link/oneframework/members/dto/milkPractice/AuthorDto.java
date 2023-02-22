@@ -3,12 +3,7 @@ package course.linkflower.link.oneframework.members.dto.milkPractice;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(callSuper = false)
-@TableName("author")
+@Data
 public class AuthorDto {
     private long id;
     private String name;

@@ -1,22 +1,22 @@
 package course.linkflower.link.oneframework.members.model;
 
+import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.*;
-import org.w3c.dom.Text;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@TableName("author")
-public class Author extends Model<Member> {
+@TableName("borrow_card")
+public class BorrowCard extends Model<BorrowCard> {
     private long id;
-    private String name;
-    private String phone;
-    private String country;
-    private String address;
-    private String mail;
-    private String remark;
+    private long clientId;
+    private DateTime startDate;
+    private DateTime endDate;
+    private byte status;
+    private byte level;
+    private long bookCount;
 }
