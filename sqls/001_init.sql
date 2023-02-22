@@ -1,0 +1,1 @@
+ALTER TABLE qlibrary.book CHANGE destory_date destroy_date datetime NULL;

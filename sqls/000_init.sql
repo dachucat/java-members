@@ -189,4 +189,6 @@ CREATE TABLE `third_auth` (
   UNIQUE KEY `third_auth_auth_type_IDX` (`auth_type`,`client_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+ALTER TABLE qlibrary.book CHANGE destory_date destroy_date datetime NULL;
+
 
