@@ -6,9 +6,11 @@ import course.linkflower.link.oneframework.members.model.Member;
 import course.linkflower.link.oneframework.members.service.MemberService;
 import course.linkflower.link.oneframework.members.vo.members.MemberInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MemberServiceImpl implements MemberService {
 
     @Autowired
