@@ -19,4 +19,6 @@ public interface BookService {
     void delete(DeleteBookDto deleteBookDto);
     List<BookVo> bookSearch(SearchBookDto book);
     BookVo getBookById(long id);
+
+    List<BookVo> listBookByBookId(long id);
 }
