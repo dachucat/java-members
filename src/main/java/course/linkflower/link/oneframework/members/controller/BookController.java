@@ -1,6 +1,7 @@
 package course.linkflower.link.oneframework.members.controller;
 
 
+import course.linkflower.link.oneframework.common.model.Result;
 import course.linkflower.link.oneframework.members.dto.book.*;
 
 import course.linkflower.link.oneframework.members.model.Book;
@@ -25,34 +26,36 @@ public class BookController {
     @Autowired
     private BookService bookService;
     @PostMapping("/add")
-    public void add(@RequestBody AddBookDto addBookDto) {
-        bookService.add(addBookDto);
+    public Result<BookVo> add(@RequestBody AddBookDto addBookDto) {
+        return Result.succeed(bookService.add(addBookDto));
     }
     @PostMapping("/delete")
-    public void delete(@RequestBody DeleteBookDto deleteBookDto) {
+    public Result delete(@RequestBody DeleteBookDto deleteBookDto) {
         bookService.delete(deleteBookDto);
+        return Result.succeed();
     }
     @PostMapping("/update")
-    public void update(@RequestBody UpdateBookDto updateBookDto) {
+    public Result update(@RequestBody UpdateBookDto updateBookDto) {
         bookService.update(updateBookDto);
+        return Result.succeed();
     }
 
     /* Todo:
     *   search报错，因为mapper配置根据名字查找信息，但是searchbookdto没有name属性
     * */
     @PostMapping("/search")
-    public List<BookVo> search(@RequestBody SearchBookDto book){
-        return bookService.bookSearch(book);
+    public Result<List<BookVo>> search(@RequestBody SearchBookDto book){
+        return Result.succeed(bookService.bookSearch(book));
     }
 
     @PostMapping("/getBookById")
-    public BookVo getBookById(@RequestBody BookIdDto dto) {
-        return bookService.getBookById(dto.getId());
+    public Result<BookVo> getBookById(@RequestBody BookIdDto dto) {
+        return Result.succeed(bookService.getBookById(dto.getId()));
     }
 
-    @PostMapping("/getBookById")
-    public List<BookVo> listBookByBookId(@RequestBody BookIdDto dto) {
-        return bookService.listBookByBookId(dto.getId());
+    @PostMapping("/listBookByBookId")
+    public Result<List<BookVo>> listBookByBookId(@RequestBody BookIdDto dto) {
+        return Result.succeed(bookService.listBookByBookId(dto.getId()));
     }
 
 }

@@ -14,7 +14,10 @@ import java.util.List;
 
 
 public interface BookService {
-    void add(AddBookDto addBookDto);
+
+    int deleteByBookInforId(long id);
+
+    BookVo add(AddBookDto addBookDto);
     void update(UpdateBookDto updateBookDto);
     void delete(DeleteBookDto deleteBookDto);
     List<BookVo> bookSearch(SearchBookDto book);

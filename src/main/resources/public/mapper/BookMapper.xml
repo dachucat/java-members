@@ -38,9 +38,13 @@
         </trim>
     </select>
 
-    <insert id="save">
+    <delete id="deleteByBookInforId">
+        delete from book where book_infor_id = #{id}
+    </delete>
+
+    <insert id="save" parameterType="course.linkflower.link.oneframework.members.model.Book"  useGeneratedKeys="true" keyProperty="id">
         INSERT INTO book( `book_infor_id` , `in_library_date`)
-        VALUES( #{bookinforid}  , #{inlibrarydate} )
+        VALUES( #{bookInforId}  , #{inLibraryDate} )
     </insert>
 
     <update id="delete">

@@ -1,5 +1,6 @@
 package course.linkflower.link.oneframework.members.service.impl;
 
+import course.linkflower.link.oneframework.members.dao.BookInfoMapper;
 import course.linkflower.link.oneframework.members.dao.BookMapper;
 import course.linkflower.link.oneframework.members.dto.book.AddBookDto;
 import course.linkflower.link.oneframework.members.dto.book.DeleteBookDto;
@@ -20,9 +21,21 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
     @Autowired
     private BookMapper bookMapper;
+
+    @Autowired
+    private BookInfoMapper bookInfoMapper;
+
     @Override
-    public void add(AddBookDto addBookDto) {
-            bookMapper.save(Long.parseLong(addBookDto.getBookInforId()), addBookDto.getInLibraryDate());
+    public int deleteByBookInforId(long id) {
+        return bookMapper.deleteByBookInforId(id);
+    }
+
+    @Override
+    public BookVo add(AddBookDto addBookDto) {
+        Book b = addBookDto.toModel();
+        bookMapper.save(b);
+
+        return bookInfoMapper.getDetailById(b.getId());
     }
 
     @Override

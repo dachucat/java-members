@@ -1,7 +1,10 @@
 package course.linkflower.link.oneframework.members.model;
 
+import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
+
+import java.util.Date;
 
 @Setter
 @Getter
@@ -11,11 +14,11 @@ import lombok.*;
 @TableName("book")
 public class Book {
     private long id;
-    private long bookInfoId;
+    private long bookInforId;
     private long bookShelfId;
     private long borrowRecordId;
     private int status;
-    private String inLibraryDate;
-    private String destroyDate;
+    private Date inLibraryDate;
+    private Date destroyDate;
     private String barcode;
 }
