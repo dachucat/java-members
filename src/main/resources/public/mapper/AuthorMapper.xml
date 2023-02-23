@@ -6,4 +6,9 @@
         INSERT INTO author(name,phone,country,address,mail,remark)
         VALUES(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
     </insert>
+
+    
+    <select id="getAuthorById" resultType="course.linkflower.link.oneframework.members.model.Author">
+        select * from author where id=#{id} limit 1;
+    </select>
 </mapper>

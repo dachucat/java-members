@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class AuthorVO {
+public class AuthorVo {
     private String id;
     private String name;
     private String phone;
@@ -16,7 +16,7 @@ public class AuthorVO {
     private String mail;
     private String remark;
 
-    public AuthorVO loadFrom(Author author){
+    public AuthorVo loadFrom(Author author){
         if (author!=null){
             id=String.valueOf(author.getId());
             name= author.getName();
@@ -29,10 +29,10 @@ public class AuthorVO {
         return this;
     }
 
-    public static List<AuthorVO> loadFromList(List<Author> list){
-        List<AuthorVO> ao=new ArrayList<>();
+    public static List<AuthorVo> loadFromList(List<Author> list){
+        List<AuthorVo> ao=new ArrayList<>();
         for (Author l:list){
-            ao.add(new AuthorVO().loadFrom(l));
+            ao.add(new AuthorVo().loadFrom(l));
         }
         return ao;
     }
