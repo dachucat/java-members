@@ -1,7 +1,7 @@
 package course.linkflower.link.oneframework.members.service;
 
-import course.linkflower.link.oneframework.members.dto.milkPractice.AuthorDto;
+import course.linkflower.link.oneframework.members.dto.author.AddAuthorDto;
 
 public interface AuthorService {
-    void addAuthor(AuthorDto authorDto);
+    void addAuthor(AddAuthorDto addAuthorDto);
 }

@@ -1,11 +1,9 @@
-package course.linkflower.link.oneframework.members.dto.milkPractice;
+package course.linkflower.link.oneframework.members.dto.author;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
 @Data
-public class AuthorDto {
-    private long id;
+public class AddAuthorDto {
     private String name;
     private String phone;
     private String country;

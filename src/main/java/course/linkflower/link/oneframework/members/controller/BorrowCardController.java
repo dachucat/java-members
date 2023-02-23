@@ -1,7 +1,6 @@
 package course.linkflower.link.oneframework.members.controller;
 
-import course.linkflower.link.oneframework.members.dto.milkPractice.BorrowCardDto;
-import course.linkflower.link.oneframework.members.model.BorrowCard;
+import course.linkflower.link.oneframework.members.dto.borrowCard.BorrowCardDto;
 import course.linkflower.link.oneframework.members.service.BorrowCardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

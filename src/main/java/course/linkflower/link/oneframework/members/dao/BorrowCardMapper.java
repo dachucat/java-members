@@ -1,7 +1,7 @@
 package course.linkflower.link.oneframework.members.dao;
 
 import course.linkflower.link.oneframework.db.mapper.SuperMapper;
-import course.linkflower.link.oneframework.members.dto.milkPractice.BorrowCardDto;
+import course.linkflower.link.oneframework.members.dto.borrowCard.BorrowCardDto;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

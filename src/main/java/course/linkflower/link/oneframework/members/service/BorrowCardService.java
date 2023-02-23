@@ -1,6 +1,6 @@
 package course.linkflower.link.oneframework.members.service;
 
-import course.linkflower.link.oneframework.members.dto.milkPractice.BorrowCardDto;
+import course.linkflower.link.oneframework.members.dto.borrowCard.BorrowCardDto;
 
 public interface BorrowCardService {
     void addBorrowCard(BorrowCardDto borrowCardDto);
