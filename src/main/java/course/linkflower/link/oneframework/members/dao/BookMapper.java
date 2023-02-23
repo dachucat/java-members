@@ -7,6 +7,7 @@ import course.linkflower.link.oneframework.members.dto.book.SearchBookDto;
 import course.linkflower.link.oneframework.members.dto.book.UpdateBookDto;
 import course.linkflower.link.oneframework.members.model.Book;
 
+import course.linkflower.link.oneframework.members.vo.book.BookVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
@@ -20,11 +21,12 @@ public interface BookMapper extends SuperMapper<Book> {
     int delete(@Param("id") long id);
 
     int update(@Param("bookInfoId") long bookInfoId);
-    Book bookSearchById(@Param("id") long id);
+    BookVo bookSearchById(@Param("id") long id);
 
-    Book bookSearchByName(@Param("name") String name);
+    BookVo bookSearchByName(@Param("name") String name);
 
-    List<Book> bookSearch(SearchBookDto id);
+    List<BookVo> bookSearch(SearchBookDto dto);
 
+    List<BookVo> listBookByBookId(long id);
 
 }

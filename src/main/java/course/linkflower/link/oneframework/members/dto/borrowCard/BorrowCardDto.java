@@ -1,4 +1,4 @@
-package course.linkflower.link.oneframework.members.dto.milkPractice;
+package course.linkflower.link.oneframework.members.dto.borrowCard;
 
 import cn.hutool.core.date.DateTime;
 import lombok.Data;

@@ -37,11 +37,16 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookVo> bookSearch(SearchBookDto book) {
-        return BookVo.loadFromList(bookMapper.bookSearch(book));
+        return bookMapper.bookSearch(book);
     }
 
     @Override
     public BookVo getBookById(long id) {
-        return new BookVo().loadFrom(bookMapper.bookSearchById(id));
+        return bookMapper.bookSearchById(id);
+    }
+
+    @Override
+    public List<BookVo> listBookByBookId(long id) {
+        return bookMapper.listBookByBookId(id);
     }
 }

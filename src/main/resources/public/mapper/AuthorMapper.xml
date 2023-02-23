@@ -4,6 +4,6 @@
 <mapper namespace="course.linkflower.link.oneframework.members.dao.AuthorMapper">
     <insert id="addAuthor">
         INSERT INTO author(name,phone,country,address,mail,remark)
-        VALUES(#{name},#{phone},#{country},#{address},#{mail},#{remark})
+        VALUES(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
     </insert>
 </mapper>

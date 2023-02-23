@@ -1,7 +1,6 @@
 package course.linkflower.link.oneframework.members.controller;
 
-import course.linkflower.link.oneframework.members.dto.milkPractice.AuthorDto;
-import course.linkflower.link.oneframework.members.model.Author;
+import course.linkflower.link.oneframework.members.dto.author.AddAuthorDto;
 import course.linkflower.link.oneframework.members.service.AuthorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,8 @@ public class AuthorController {
     private AuthorService authorService;
 
     @PostMapping("/addAuthor")
-    public void addAuthor(@RequestBody AuthorDto authorDto){
-        authorService.addAuthor(authorDto);
+    public void addAuthor(@RequestBody AddAuthorDto addAuthorDto){
+        authorService.addAuthor(addAuthorDto);
     }
 }
 

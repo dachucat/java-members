@@ -9,6 +9,10 @@ import java.util.List;
 @Data
 public class BookVo {
     private String id;
+
+    private String bookshelfName;
+
+    private String name;
     private long bookInfoId;
     private long bookShelfId;
     private long borrowRecordId;

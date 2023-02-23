@@ -50,4 +50,9 @@ public class BookController {
         return bookService.getBookById(dto.getId());
     }
 
+    @PostMapping("/getBookById")
+    public List<BookVo> listBookByBookId(@RequestBody BookIdDto dto) {
+        return bookService.listBookByBookId(dto.getId());
+    }
+
 }

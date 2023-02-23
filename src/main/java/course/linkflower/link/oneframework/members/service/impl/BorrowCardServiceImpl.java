@@ -1,8 +1,7 @@
 package course.linkflower.link.oneframework.members.service.impl;
 
-import com.baomidou.mybatisplus.core.mapper.Mapper;
 import course.linkflower.link.oneframework.members.dao.BorrowCardMapper;
-import course.linkflower.link.oneframework.members.dto.milkPractice.BorrowCardDto;
+import course.linkflower.link.oneframework.members.dto.borrowCard.BorrowCardDto;
 import course.linkflower.link.oneframework.members.service.BorrowCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
