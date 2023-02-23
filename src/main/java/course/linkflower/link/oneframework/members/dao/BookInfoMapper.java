@@ -7,11 +7,13 @@ import course.linkflower.link.oneframework.members.dto.bookInfo.AddBookInfoDto;
 import course.linkflower.link.oneframework.members.dto.bookInfo.UpdateBookInfoDto;
 import course.linkflower.link.oneframework.members.model.Book;
 import course.linkflower.link.oneframework.members.model.BookInfo;
+import course.linkflower.link.oneframework.members.vo.book.BookVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface BookInfoMapper extends SuperMapper<BookInfo> {
 
+    BookVo getDetailById(@Param("id") long id);
     int save(@Param("name") String name);
 
     int delete(@Param("id") Long id);

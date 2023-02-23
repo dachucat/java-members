@@ -16,8 +16,9 @@ import java.util.List;
 
 @Mapper
 public interface BookMapper extends SuperMapper<Book> {
-    int save(@Param("bookinforid") long bookInforId,@Param("inlibrarydate") DateTime inLibraryDate);
+    int save(Book book);
 
+    int deleteByBookInforId(@Param("id") long id);
     int delete(@Param("id") long id);
 
     int update(@Param("bookInfoId") long bookInfoId);

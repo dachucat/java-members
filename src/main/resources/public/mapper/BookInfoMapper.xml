@@ -20,4 +20,8 @@
         name = #{name}
     </update>
 
+    <select id="getDetailById" resultType="course.linkflower.link.oneframework.members.vo.book.BookVo">
+        select bi.name as name, p.name as publisher, b.* from book_infor bi JOIN book b on bi.id = b.book_infor_id left JOIN publisher p on p.id  = bi.publisher_id where b.id  = #{id}
+    </select>
+
 </mapper>

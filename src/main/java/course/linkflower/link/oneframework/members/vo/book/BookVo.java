@@ -1,9 +1,11 @@
 package course.linkflower.link.oneframework.members.vo.book;
 
+import cn.hutool.core.date.DateTime;
 import course.linkflower.link.oneframework.members.model.Book;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -12,19 +14,21 @@ public class BookVo {
 
     private String bookshelfName;
 
+    private String publisher;
+
     private String name;
-    private long bookInfoId;
+    private long bookInforId;
     private long bookShelfId;
     private long borrowRecordId;
     private int status;
-    private String inLibraryDate;
-    private String destroyDate;
+    private Date inLibraryDate;
+    private Date destroyDate;
     private String barcode;
 
     public BookVo loadFrom(Book m) {
         if (m != null) {
             id = String.valueOf(m.getId());
-            bookInfoId = m.getBookInfoId();
+            bookInforId = m.getBookInforId();
             bookShelfId = m.getBookShelfId();
             borrowRecordId = m.getBorrowRecordId();
             status = m.getStatus();

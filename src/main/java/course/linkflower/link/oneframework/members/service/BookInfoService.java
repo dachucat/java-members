@@ -9,6 +9,7 @@ import course.linkflower.link.oneframework.members.model.BookInfo;
 import course.linkflower.link.oneframework.members.vo.bookInfo.BookInfoVo;
 
 public interface BookInfoService {
+
     void addBookInfo (AddBookInfoDto addBookInfoDto);
     void updateBookInfo(UpdateBookInfoDto updateBookInfoDto);
     void deleteBookInfo (DeleteBookInfoDto deleteBookInfoDto);
