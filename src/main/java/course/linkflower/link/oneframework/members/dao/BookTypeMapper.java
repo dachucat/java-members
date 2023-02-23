@@ -17,5 +17,5 @@ public interface BookTypeMapper extends SuperMapper<BookType> {
     int delete(@Param("id") Long id);
 
     int update(@Param("name") String name);
-    BookType bookType (@Param("id") Long id);
+    BookType bookTypeSearchById (@Param("id") Long id);
 }

@@ -18,5 +18,5 @@ public interface BookInfoMapper extends SuperMapper<BookInfo> {
 
     int update(@Param("name") String name);
 
-    BookInfo bookInfoSearch(@Param("id") Long id);
+    BookInfo bookInfoSearchById(@Param("id") Long id);
 }

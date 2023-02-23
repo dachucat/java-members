@@ -1,4 +1,4 @@
-package course.linkflower.link.oneframework.members.dto.ThirdAuth;
+package course.linkflower.link.oneframework.members.dto.thirdAuth;
 import lombok.Data;
 
 @Data

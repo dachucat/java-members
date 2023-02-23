@@ -16,5 +16,5 @@ public interface BorrowRequestMapper extends SuperMapper<BorrowRequest> {
 
     int update(@Param("bookInfoId") long bookInfoId);
 
-    BorrowRequest borrowRequestSearch (@Param("id") Long id);
+    BorrowRequest borrowRequestSearchByid (@Param("id") Long id);
 }

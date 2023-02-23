@@ -16,5 +16,5 @@ public interface BorrowRecordMapper extends SuperMapper<BorrowRecord> {
 
     int update(@Param("clientId") long clientId);
 
-    BorrowRecord borrowRecordSearch (@Param("id") Long id);
+    BorrowRecord borrowRecordSearchByid (@Param("id") Long id);
 }

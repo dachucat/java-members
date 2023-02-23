@@ -15,5 +15,5 @@ public interface PublisherMapper extends SuperMapper<Publisher> {
     int delete(@Param("id") Long id);
 
     int update(@Param("bookInfoId") String name);
-    Publisher publisherSearch (@Param("id") Long id);
+    Publisher publisherSearchById (@Param("id") Long id);
 }

@@ -1,5 +1,6 @@
 package course.linkflower.link.oneframework.members.controller;
 
+
 import course.linkflower.link.oneframework.members.dto.book.*;
 
 import course.linkflower.link.oneframework.members.model.Book;
@@ -35,6 +36,10 @@ public class BookController {
     public void update(@RequestBody UpdateBookDto updateBookDto) {
         bookService.update(updateBookDto);
     }
+
+    /* Todo:
+    *   search报错，因为mapper配置根据名字查找信息，但是searchbookdto没有name属性
+    * */
     @PostMapping("/search")
     public List<BookVo> search(@RequestBody SearchBookDto book){
         return bookService.bookSearch(book);
