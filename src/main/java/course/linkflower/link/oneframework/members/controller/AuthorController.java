@@ -1,7 +1,9 @@
 package course.linkflower.link.oneframework.members.controller;
 
 import course.linkflower.link.oneframework.members.dto.author.AddAuthorDto;
+import course.linkflower.link.oneframework.members.dto.author.AuthorIdDto;
 import course.linkflower.link.oneframework.members.service.AuthorService;
+import course.linkflower.link.oneframework.members.vo.authorVO.AuthorVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -22,5 +24,8 @@ public class AuthorController {
     public void addAuthor(@RequestBody AddAuthorDto addAuthorDto){
         authorService.addAuthor(addAuthorDto);
     }
+
+    @PostMapping("/getAuthorById")
+    public AuthorVo getAuthorById(@RequestBody AuthorIdDto authorIdDto){return authorService.getAuthorById(authorIdDto);}
 }
 
