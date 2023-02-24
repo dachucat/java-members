@@ -35,6 +35,7 @@ public class BookInfoController {
     public void add(@RequestBody AddBookInfoDto addBookInfoDto) {
         bookInfoService.addBookInfo(addBookInfoDto);
     }
+
     @PostMapping("/delete")
     public Result delete(@RequestBody DeleteBookInfoDto deleteBookInfoDto) {
          bookInfoService.deleteBookInfo(deleteBookInfoDto);

@@ -8,6 +8,10 @@ import course.linkflower.link.oneframework.members.dto.borrowRecord.UpdateBorrow
 import course.linkflower.link.oneframework.members.model.BorrowRecord;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.Date;
+import java.util.List;
+
 @Mapper
 public interface BorrowRecordMapper extends SuperMapper<BorrowRecord> {
     int save(@Param("clientId") long clientId , @Param("startDate") String startDate);
@@ -17,4 +21,7 @@ public interface BorrowRecordMapper extends SuperMapper<BorrowRecord> {
     int update(@Param("clientId") long clientId);
 
     BorrowRecord borrowRecordSearchByid (@Param("id") Long id);
+
+    List<BorrowRecord> listByDate(@Param("starDate")Date startDate, @Param("endDate") Date endDate, int pageStart, int pageCount);
+    int getByDateTotal(@Param("starDate")Date startDate, @Param("endDate") Date endDate);
 }

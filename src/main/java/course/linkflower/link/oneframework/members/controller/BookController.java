@@ -58,4 +58,9 @@ public class BookController {
         return Result.succeed(bookService.listBookByBookId(dto.getId()));
     }
 
+    @PostMapping("/addBookByBarcodeToLibrary")
+    public Result<BookVo> addBookByBarcodeToLibrary(@RequestBody AddBookByBarcodeDto dto) {
+        return bookService.addBookByBarcodeToLibrary(dto);
+    }
+
 }

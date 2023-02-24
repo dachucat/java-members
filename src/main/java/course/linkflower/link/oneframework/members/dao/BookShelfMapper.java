@@ -17,4 +17,6 @@ public interface BookShelfMapper extends SuperMapper<Bookshelf> {
     int update(@Param("name") String name);
 
     Bookshelf bookShelfSearchById(@Param("id") Long id);
+
+    Bookshelf getByBarcode(@Param("barcode") String barcode);
 }

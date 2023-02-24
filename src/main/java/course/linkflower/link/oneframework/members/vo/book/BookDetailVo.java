@@ -1,0 +1,32 @@
+package course.linkflower.link.oneframework.members.vo.book;
+
+import course.linkflower.link.oneframework.members.dto.book.BookShortInfoVo;
+import course.linkflower.link.oneframework.members.dto.bookShelf.BookShelfInfoVo;
+import course.linkflower.link.oneframework.members.model.Book;
+import course.linkflower.link.oneframework.members.vo.bookInfo.BookInforShortVo;
+import course.linkflower.link.oneframework.members.vo.borrowRecord.BorrowRecordInfoVo;
+import course.linkflower.link.oneframework.members.vo.borrowcard.BorrowCardInfoVo;
+import course.linkflower.link.oneframework.members.vo.client.ClientInfoVo;
+import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+@Data
+public class BookDetailVo {
+    private String id;
+
+    private BookInforShortVo bookInfo;
+    //借书人
+    private ClientInfoVo borrower;
+
+    private BorrowRecordInfoVo borrowRecord;
+
+    private BorrowCardInfoVo borrowCard;
+
+    private BookShelfInfoVo bookShelf;
+
+    private BookShortInfoVo book;
+
+}

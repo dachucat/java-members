@@ -1,7 +1,8 @@
 package course.linkflower.link.oneframework.members.vo.book;
 
-import cn.hutool.core.date.DateTime;
 import course.linkflower.link.oneframework.members.model.Book;
+import course.linkflower.link.oneframework.members.vo.bookInfo.BookInforShortVo;
+import course.linkflower.link.oneframework.members.vo.client.ClientInfoVo;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -20,6 +21,11 @@ public class BookVo {
     private long bookInforId;
     private long bookShelfId;
     private long borrowRecordId;
+
+    private BookInforShortVo bookInfo;
+    //借书人
+    private ClientInfoVo borrower;
+
     private int status;
     private Date inLibraryDate;
     private Date destroyDate;

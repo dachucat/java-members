@@ -12,6 +12,7 @@ import lombok.*;
 public class BorrowRecord {
     private long id;
     private long clientId;
+    private long bookId;
     private long borrowCardId;
     private int status;
     private String startDate;

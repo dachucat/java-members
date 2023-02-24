@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.Collection;
 import java.util.List;
 
 @Mapper
@@ -29,5 +30,7 @@ public interface BookMapper extends SuperMapper<Book> {
     List<BookVo> bookSearch(SearchBookDto dto);
 
     List<BookVo> listBookByBookId(long id);
+
+    List<Book> listBookByIds(@Param("ids") Collection<Long> ids);
 
 }
