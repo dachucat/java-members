@@ -1,9 +1,11 @@
 package course.linkflower.link.oneframework.members.controller;
 
+import course.linkflower.link.oneframework.common.model.Result;
 import course.linkflower.link.oneframework.members.dto.author.AddAuthorDto;
 import course.linkflower.link.oneframework.members.dto.author.AuthorIdDto;
+import course.linkflower.link.oneframework.members.dto.author.UpdateAuthorDto;
 import course.linkflower.link.oneframework.members.service.AuthorService;
-import course.linkflower.link.oneframework.members.vo.authorVO.AuthorVo;
+import course.linkflower.link.oneframework.members.vo.author.AuthorVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -26,6 +28,13 @@ public class AuthorController {
     }
 
     @PostMapping("/getAuthorById")
-    public AuthorVo getAuthorById(@RequestBody AuthorIdDto authorIdDto){return authorService.getAuthorById(authorIdDto);}
+    public AuthorVo getAuthorById(@RequestBody AuthorIdDto authorIdDto){
+        return authorService.getAuthorById(authorIdDto);
+    }
+
+    @PostMapping("/updateAuthor")
+    public Result<AuthorVo> updateAuthor(@RequestBody UpdateAuthorDto updateAuthorDto){
+        return Result.succeed(authorService.updateAuthor(updateAuthorDto));
+    }
 }
 

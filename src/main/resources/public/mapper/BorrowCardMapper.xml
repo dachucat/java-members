@@ -11,7 +11,7 @@
         delete from borrow_card where id=#{id}
     </delete>
 
-<!--    <update id="updateBorrowCard">-->
-<!--        update borrow_card set start_date='2011-11-19' where id=1-->
-<!--    </update>-->
+    <update id="updateBorrowCard">
+        update borrow_card set start_date='2011-11-19' where id=1
+    </update>
 </mapper>

@@ -1,4 +1,4 @@
-package course.linkflower.link.oneframework.members.vo.authorVO;
+package course.linkflower.link.oneframework.members.vo.author;
 
 import course.linkflower.link.oneframework.members.model.Author;
 import lombok.Data;
