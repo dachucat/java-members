@@ -4,11 +4,15 @@
 <mapper namespace="course.linkflower.link.oneframework.members.dao.AuthorMapper">
     <insert id="addAuthor">
         INSERT INTO author(name,phone,country,address,mail,remark)
-        VALUES(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
+        VALUES(#{name},#{phone},#{country},#{address},#{mail},#{remark})
     </insert>
 
     
-    <select id="getAuthorById" resultType="course.linkflower.link.oneframework.members.model.Author">
+    <select id="getAuthorById" resultType="course.linkflower.link.oneframework.members.vo.author.AuthorVo">
         select * from author where id=#{id} limit 1;
     </select>
+
+    <update id="updateAuthor" parameterType="course.linkflower.link.oneframework.members.model.Author"  useGeneratedKeys="true" keyProperty="id">
+        update author set phone=#{phone}, country=#{country}, address=#{address}, mail=#{mail}, remark=#{remark} wher e id=#{id}
+    </update>
 </mapper>
