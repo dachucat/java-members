@@ -5,9 +5,9 @@ import lombok.Data;
 
 @Data
 public class BorrowRecordVo {
-    private long id;
-    private long clientId;
-    private long borrowCardId;
+    private String id;
+    private String clientId;
+    private String borrowCardId;
     private int status;
     private String startDate;
     private String endDate;
@@ -15,7 +15,7 @@ public class BorrowRecordVo {
 
     public BorrowRecordVo loadFrom(BorrowRecord borrowRecord){
         if (borrowRecord != null){
-            clientId = borrowRecord.getClientId();
+            clientId = String.valueOf(borrowRecord.getClientId());
             startDate = borrowRecord.getStartDate();
             endDate = borrowRecord.getEndDate();
         }

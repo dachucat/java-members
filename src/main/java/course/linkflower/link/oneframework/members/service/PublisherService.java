@@ -7,12 +7,13 @@ import course.linkflower.link.oneframework.members.dto.borrowRequest.UpdateBorro
 import course.linkflower.link.oneframework.members.dto.publisher.AddPublisherDto;
 import course.linkflower.link.oneframework.members.dto.publisher.DeletePublisherDto;
 import course.linkflower.link.oneframework.members.dto.publisher.SearchPublisherDto;
+import course.linkflower.link.oneframework.members.dto.publisher.UpdatePublisherDto;
 import course.linkflower.link.oneframework.members.vo.borrowRequest.BorrowRequestVo;
 import course.linkflower.link.oneframework.members.vo.publisher.PublisherVo;
 
 public interface PublisherService {
     void addPublisher (AddPublisherDto addPublisherDto);
-    void updatePublisher(UpdateBorrowRequestDto updateBorrowRequestDto);
+    void updatePublisher(UpdatePublisherDto updatePublisherDto);
     void deletePublisher (DeletePublisherDto deletePublisherDto);
     PublisherVo getPublisherById(SearchPublisherDto searchPublisherDto);
 }

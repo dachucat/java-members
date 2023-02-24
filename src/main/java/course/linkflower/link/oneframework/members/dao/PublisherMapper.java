@@ -10,10 +10,10 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface PublisherMapper extends SuperMapper<Publisher> {
-    int save(@Param("bookInfoId") String name);
+    int save(@Param("name") String name);
 
     int delete(@Param("id") Long id);
 
-    int update(@Param("bookInfoId") String name);
+    int update(@Param("name") String name ,@Param("id") Long id);
     Publisher publisherSearchById (@Param("id") Long id);
 }

@@ -16,12 +16,10 @@ import java.util.List;
 public interface BookService {
 
     int deleteByBookInforId(long id);
-
     BookVo add(AddBookDto addBookDto);
     void update(UpdateBookDto updateBookDto);
     void delete(DeleteBookDto deleteBookDto);
     List<BookVo> bookSearch(SearchBookDto book);
     BookVo getBookById(long id);
-
     List<BookVo> listBookByBookId(long id);
 }

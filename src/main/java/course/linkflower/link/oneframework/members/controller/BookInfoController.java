@@ -1,5 +1,6 @@
 package course.linkflower.link.oneframework.members.controller;
 
+import course.linkflower.link.oneframework.common.model.Result;
 import course.linkflower.link.oneframework.members.dao.BookInfoMapper;
 import course.linkflower.link.oneframework.members.dto.book.AddBookDto;
 import course.linkflower.link.oneframework.members.dto.book.DeleteBookDto;
@@ -35,8 +36,9 @@ public class BookInfoController {
         bookInfoService.addBookInfo(addBookInfoDto);
     }
     @PostMapping("/delete")
-    public void delete(@RequestBody DeleteBookInfoDto deleteBookInfoDto) {
-        bookInfoService.deleteBookInfo(deleteBookInfoDto);
+    public Result delete(@RequestBody DeleteBookInfoDto deleteBookInfoDto) {
+         bookInfoService.deleteBookInfo(deleteBookInfoDto);
+         return Result.succeed();
     }
     @PostMapping("/update")
     public void update(@RequestBody UpdateBookInfoDto updateBookInfoDto) {

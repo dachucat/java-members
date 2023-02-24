@@ -5,17 +5,17 @@ import lombok.Data;
 
 @Data
 public class BorrowRequestVo {
-    private long id;
-    private long bookInfoId;
+    private String id;
+    private String bookInfoId;
     private String remark;
-    private long clientId;
+    private String clientId;
     private int type;
     private String borrowDate;
 
     public BorrowRequestVo loadFrom(BorrowRequest borrowRequest){
         if (borrowRequest != null){
-            clientId = borrowRequest.getClientId();
-            bookInfoId = borrowRequest.getBookInfoId();
+            clientId = String.valueOf(borrowRequest.getClientId());
+            bookInfoId = String.valueOf(borrowRequest.getBookInfoId());
         }
         return this;
     }

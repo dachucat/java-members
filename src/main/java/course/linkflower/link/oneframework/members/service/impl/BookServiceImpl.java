@@ -34,7 +34,6 @@ public class BookServiceImpl implements BookService {
     public BookVo add(AddBookDto addBookDto) {
         Book b = addBookDto.toModel();
         bookMapper.save(b);
-
         return bookInfoMapper.getDetailById(b.getId());
     }
 
