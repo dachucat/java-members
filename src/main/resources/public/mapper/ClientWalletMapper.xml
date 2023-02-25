@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="course.linkflower.link.oneframework.members.dao.ClientWalletMapper">
+    <select id="listWalletByClientId" resultType="course.linkflower.link.oneframework.members.vo.clientwallet.ClientWalletVo">
+        select * from client_wallet where client_id=#{ClientId}
+    </select>
+</mapper>

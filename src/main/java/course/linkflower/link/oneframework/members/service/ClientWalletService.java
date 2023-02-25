@@ -5,5 +5,6 @@ import course.linkflower.link.oneframework.members.vo.clientwallet.ClientWalletV
 
 import java.util.List;
 
-public interface ClientService {
+public interface ClientWalletService {
+    List<ClientWalletVo> listWalletByClientId(IdDto idDto);
 }
