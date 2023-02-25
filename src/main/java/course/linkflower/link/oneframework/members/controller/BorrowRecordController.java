@@ -1,6 +1,6 @@
 package course.linkflower.link.oneframework.members.controller;
 
-import course.linkflower.link.oneframework.common.model.PageResult;
+import course.linkflower.link.oneframework.common.model.PageModelResult;
 import course.linkflower.link.oneframework.common.model.Result;
 import course.linkflower.link.oneframework.members.dto.base.IdDto;
 import course.linkflower.link.oneframework.members.dto.bookType.AddBookTypeDto;
@@ -50,8 +50,8 @@ public class BorrowRecordController {
         return borrowRecordService.getBorrowRecordById(searchBorrowRecordDto);
     }
 
-//    @PostMapping("/listBookByDate")
-//    public Result<PageResult<List<BookDetailVo>>> listBookByDate(@RequestBody SearchByDateDto dto) {
-//        return borrowRecordService.listBookByDate(dto);
-//    }
+    @PostMapping("/listBookByDate")
+    public Result<PageModelResult<List<BookDetailVo>>> listBookByDate(@RequestBody SearchByDateDto dto) {
+        return borrowRecordService.listBookByDate(dto);
+    }
 }

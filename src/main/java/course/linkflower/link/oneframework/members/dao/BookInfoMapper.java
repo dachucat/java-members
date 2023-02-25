@@ -29,6 +29,6 @@ public interface BookInfoMapper extends SuperMapper<BookInfo> {
 
     BookInfo getBookByBarcode(@Param("barcode") String barcode);
 
-    List<BookInfo> listByIds(@Param("barcode") Collection<Long> ids);
+    List<BookInfo> listByIds(@Param("ids") Collection<Long> ids);
 
 }

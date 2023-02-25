@@ -55,4 +55,11 @@
         book_infor_id = #{bookInfoId}
     </update>
 
+    <select id="listByIds" resultType="course.linkflower.link.oneframework.members.model.Book">
+        select * from book where id in
+        <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
 </mapper>

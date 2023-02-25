@@ -24,4 +24,11 @@
         select bi.name as name, p.name as publisher, b.* from book_infor bi JOIN book b on bi.id = b.book_infor_id left JOIN publisher p on p.id  = bi.publisher_id where b.id  = #{id}
     </select>
 
+    <select id="listByIds" resultType="course.linkflower.link.oneframework.members.model.BookInfo">
+    select * from book_infor where id in
+    <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+        #{item}
+    </foreach>
+    </select>
+
 </mapper>

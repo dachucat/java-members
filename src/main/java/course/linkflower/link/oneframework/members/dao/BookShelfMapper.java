@@ -8,6 +8,10 @@ import course.linkflower.link.oneframework.members.dto.bookShelf.UpdateBookShelf
 import course.linkflower.link.oneframework.members.model.Bookshelf;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.Collection;
+import java.util.List;
+
 @Mapper
 public interface BookShelfMapper extends SuperMapper<Bookshelf> {
     int save(@Param("name") String name);
@@ -19,4 +23,6 @@ public interface BookShelfMapper extends SuperMapper<Bookshelf> {
     Bookshelf bookShelfSearchById(@Param("id") Long id);
 
     Bookshelf getByBarcode(@Param("barcode") String barcode);
+
+    List<Bookshelf> listByIds(@Param("ids") Collection<Long> ids);
 }
