@@ -14,4 +14,8 @@
     <update id="updateBorrowCard">
         update borrow_card set start_date='2011-11-19' where id=1
     </update>
+
+    <select id="getBorrowCardByBorrowCardId" resultType="course.linkflower.link.oneframework.members.model.BorrowCard">
+        select * from borrow_card where id=#{id}
+    </select>
 </mapper>

@@ -11,6 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface AuthorMapper extends SuperMapper<AuthorMapper> {
     int addAuthor(AddAuthorDto addAuthorDto);
     AuthorVo getAuthorById(@Param("id") long id);
-
     int updateAuthor(Author author);
+    int deleteAuthorById(@Param("id") long id);
 }
