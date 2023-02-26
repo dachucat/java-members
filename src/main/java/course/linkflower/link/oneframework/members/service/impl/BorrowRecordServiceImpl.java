@@ -150,17 +150,23 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
             Map<Long , BookBorrowRecord> bookBorrowRecordMap= new HashMap<>();
             Map<Long , Client> clientMap = new HashMap<>();
             // 得到bookborrowrecords
-            List<BookBorrowRecord> bookBorrowRecords = null;
+            //每一个clienId 有多个BookBorrowRecord
+            Map<Long, List<BookBorrowRecord>> bookBorrowRecords = new HashMap<>();
             if (clientIds.size() > 0){
                 //根据索引到的clientId列出用户信息，并放置到clientMap
                 for (Client client : clientMapper.listByIds(clientIds.keySet())){
                     clientMap.put(client.getId(), client);
                     //根据clientids找到 bookborrowrecord
-                    for (BookBorrowRecord bookborrowRecord : bookBorrowRecordMapper.listByIds(clientIds.keySet())){
-                        bookBorrowRecordMap.put( client.getId() ,bookborrowRecord );
-                        // 得到bookborrowrecords
-                        bookBorrowRecords .add(bookborrowRecord);
+                }
+                for (BookBorrowRecord bookborrowRecord : bookBorrowRecordMapper.listByIds(clientIds.keySet())){
+                    bookBorrowRecordMap.put( bookborrowRecord.getId() ,bookborrowRecord );
+                    // 得到bookborrowrecords
+                    List<BookBorrowRecord> l = bookBorrowRecords.get(bookborrowRecord.getClientId());
+                    if (l == null) {
+                        l = new ArrayList<>();
+                        bookBorrowRecords.put(bookborrowRecord.getClientId(), l);
                     }
+                    l.add(bookborrowRecord);
                 }
             }
 
@@ -180,13 +186,8 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
                     bs = bookShelfMap.get(b.getBookShelfId());
                     c = clientMap.get(r.getClientId());
                 }
-                for (int i = 0; i < bookBorrowRecords.size(); i++) {
-                    BookBorrowRecord bbr = bookBorrowRecords.get(i);
-                    //判断id是否相同
-                    if(bbr.getClientId() == c.getId() & bbr.getBookInforId() == bisi.getId()){
-                        cinfo.setBarcode(bisi.getBarcode());
-                    }
-                }
+
+
                 bd.loadFrom(r);
                 bd.setBook(new BookShortInfoVo().loadFrom(b));
                 bd.setBookInfo(new BookInforShortVo().loadFrom(bisi));

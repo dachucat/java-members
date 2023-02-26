@@ -12,6 +12,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @TableName("book_borrow_record")
 public class BookBorrowRecord {
+        private long id;
         private long clientId;
         private long borrowCardId;
         private long borrowId;
