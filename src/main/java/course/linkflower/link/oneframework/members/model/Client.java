@@ -18,4 +18,5 @@ public class Client {
     private String mobile;
     private byte status;
     private String address;
+    private String avatar;
 }
