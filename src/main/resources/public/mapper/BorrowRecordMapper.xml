@@ -20,4 +20,13 @@
         client_id = #{clientId}
     </update>
 
+    <select id="listByDate" resultType="course.linkflower.link.oneframework.members.model.BorrowRecord">
+        select * from borrow_record where start_date >= #{starDate} and (end_date <![CDATA[ >= ]]> #{endDate} or end_date is null)
+        order by start_date desc limit #{pageStart}, #{pageCount}
+    </select>
+
+    <select id="getByDateTotal" resultType="int">
+        select count(*) from borrow_record where start_date >= #{starDate} and (end_date <![CDATA[ >= ]]> #{endDate} or end_date is null)
+    </select>
+
 </mapper>

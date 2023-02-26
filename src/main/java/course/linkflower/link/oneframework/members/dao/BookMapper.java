@@ -31,6 +31,6 @@ public interface BookMapper extends SuperMapper<Book> {
 
     List<BookVo> listBookByBookId(long id);
 
-    List<Book> listBookByIds(@Param("ids") Collection<Long> ids);
+    List<Book> listByIds(@Param("ids") Collection<Long> ids);
 
 }

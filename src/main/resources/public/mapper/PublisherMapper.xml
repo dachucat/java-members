@@ -19,4 +19,11 @@
         update publisher where id = #{id} set name = #{name}
     </update>
 
+    <select id="listByIds" resultType="course.linkflower.link.oneframework.members.model.Publisher">
+        select * from publisher where id in
+        <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
 </mapper>

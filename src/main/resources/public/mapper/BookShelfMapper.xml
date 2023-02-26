@@ -20,4 +20,11 @@
         name = #{name}
     </update>
 
+    <select id="listByIds" resultType="course.linkflower.link.oneframework.members.model.Bookshelf">
+        select * from bookshelf where id in
+        <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
 </mapper>

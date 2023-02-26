@@ -1,5 +1,6 @@
 package course.linkflower.link.oneframework.members.service;
 
+import course.linkflower.link.oneframework.common.model.PageModelResult;
 import course.linkflower.link.oneframework.common.model.PageResult;
 import course.linkflower.link.oneframework.common.model.Result;
 import course.linkflower.link.oneframework.members.dto.bookType.AddBookTypeDto;
@@ -19,5 +20,5 @@ public interface BorrowRecordService {
     void deleteBorrowRecord (DeleteBorrowRecordDto deleteBorrowRecordDto);
     BorrowRecordVo getBorrowRecordById(SearchBorrowRecordDto searchBorrowRecordDto);
 
-//    Result<PageResult<List<BookDetailVo>>> listBookByDate(SearchByDateDto searchByDateDto);
+    Result<PageModelResult<List<BookDetailVo>>> listBookByDate(SearchByDateDto searchByDateDto);
 }
