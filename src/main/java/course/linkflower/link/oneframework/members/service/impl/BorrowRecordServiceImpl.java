@@ -13,8 +13,10 @@ import course.linkflower.link.oneframework.members.service.BorrowRecordService;
 import course.linkflower.link.oneframework.members.vo.book.BookDetailVo;
 import course.linkflower.link.oneframework.members.vo.bookInfo.BookInforShortVo;
 import course.linkflower.link.oneframework.members.vo.borrowRecord.BorrowRecordVo;
+import course.linkflower.link.oneframework.members.vo.client.ClientInfoVo;
 import course.linkflower.link.oneframework.members.vo.publisher.PublisherInfoVo;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.hssf.record.BookBoolRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,10 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
 
     @Autowired
     PublisherMapper publisherMapper;
+    @Autowired
+    ClientMapper clientMapper;
+    @Autowired
+    BookBorrowRecordMapper bookBorrowRecordMapper;
 
     @Override
     public void addBorrowRecord(AddBorrowRecordDto addBorrowRecordDto) {
@@ -91,8 +97,11 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
 
             //从借书记录中获取图书id到bookIds数组
             List<Long> bookIds = new ArrayList<>();
+            Map<Long, Boolean> clientIds = new HashMap<>();
             for (BorrowRecord r : records) {
                 bookIds.add(r.getBookId());
+                //从借阅记录中获得借书用户的id
+                clientIds.put(r.getClientId(),Boolean.TRUE);
             }
 
             Map<Long, Boolean> bookInfoIdMap = new HashMap<>();
@@ -112,6 +121,8 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
 
             Map<Long, Boolean>  publisherIds = new HashMap<>();
             Map<Long, BookInfo> bookInfoMap = new HashMap<>();
+            //获得借书记录
+
             if (bookInfoIdMap.size() > 0) {
                 //根据索引到的bookInforId列出图书信息，并放置到bookInfoMap
                 for (BookInfo bi : bookInfoMapper.listByIds(bookInfoIdMap.keySet())) {
@@ -123,7 +134,7 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
             Map<Long, Publisher> publisherMap = new HashMap<>();
             if (publisherIds.size() > 0) {
                 //根据索引到的bookInforId列出图书信息，并放置到bookInfoMap
-                for (Publisher pi : publisherMapper.listByIds(publisherIds.keySet())) {
+                for (Publisher pi : publisherMapper. listByIds(publisherIds.keySet())) {
                     publisherMap.put(pi.getId(), pi);
                 }
             }
@@ -136,25 +147,52 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
                 }
             }
 
+            Map<Long , BookBorrowRecord> bookBorrowRecordMap= new HashMap<>();
+            Map<Long , Client> clientMap = new HashMap<>();
+            // 得到bookborrowrecords
+            List<BookBorrowRecord> bookBorrowRecords = null;
+            if (clientIds.size() > 0){
+                //根据索引到的clientId列出用户信息，并放置到clientMap
+                for (Client client : clientMapper.listByIds(clientIds.keySet())){
+                    clientMap.put(client.getId(), client);
+                    //根据clientids找到 bookborrowrecord
+                    for (BookBorrowRecord bookborrowRecord : bookBorrowRecordMapper.listByIds(clientIds.keySet())){
+                        bookBorrowRecordMap.put( client.getId() ,bookborrowRecord );
+                        // 得到bookborrowrecords
+                        bookBorrowRecords .add(bookborrowRecord);
+                    }
+                }
+            }
+
             for (BorrowRecord r : records) {
                 BookDetailVo bd = new BookDetailVo();
                 Book b = bookMap.get(r.getBookId());
                 BookInfo bisi = null;
                 Publisher p = null;
                 Bookshelf bs = null;
+                Client c = null;
+                ClientInfoVo cinfo = new ClientInfoVo();
                 if (b != null) {
                     bisi = bookInfoMap.get(b.getBookInforId());
                     if (bisi != null) {
                         p = publisherMap.get(bisi.getPublisherId());
-
                     }
                     bs = bookShelfMap.get(b.getBookShelfId());
+                    c = clientMap.get(r.getClientId());
+                }
+                for (int i = 0; i < bookBorrowRecords.size(); i++) {
+                    BookBorrowRecord bbr = bookBorrowRecords.get(i);
+                    //判断id是否相同
+                    if(bbr.getClientId() == c.getId() & bbr.getBookInforId() == bisi.getId()){
+                        cinfo.setBarcode(bisi.getBarcode());
+                    }
                 }
                 bd.loadFrom(r);
                 bd.setBook(new BookShortInfoVo().loadFrom(b));
                 bd.setBookInfo(new BookInforShortVo().loadFrom(bisi));
                 bd.setBookShelf(new BookShelfInfoVo().loadFrom(bs));
                 bd.setPublisher(new PublisherInfoVo().loadFrom(p));
+                bd.setBorrower(cinfo.loadFrom(c));
 
                 /*
                 ok

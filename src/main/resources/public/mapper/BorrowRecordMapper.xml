@@ -9,7 +9,7 @@
 
     <insert id="save">
         INSERT INTO borrow_record( `client_id` , `start_date`)
-        VALUES( #{clientId} , #{startDate} )
+        VALUES( #{clientId} , #{startDate} })
     </insert>
 
     <update id="delete">
