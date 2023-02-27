@@ -10,6 +10,6 @@ public class TopicVo {
     private byte columnType;
     private byte isHot;
     private String icon;
-    private String sortValue;
+    private int sortValue;
     private String id;
 }

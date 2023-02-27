@@ -1,4 +1,4 @@
-
+--- 2023-02-26
 CREATE TABLE `topic` (
   `name` varchar(100) NOT NULL COMMENT '名称',
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -10,3 +10,6 @@ CREATE TABLE `topic` (
   `sort_value` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+
+--- 2023-02-27
+ALTER TABLE library.topic ADD code varchar(32) NULL;

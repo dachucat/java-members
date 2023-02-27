@@ -18,4 +18,28 @@
     <update id="update" parameterType="course.linkflower.link.oneframework.members.dto.topic.UpdateDto" useGeneratedKeys="true" keyProperty="id">
         update topic where id=#{id} set name=#{name}, parent_id=#{parentId}, column_type=#{columnType}, is_hot=#{isHot},icon=#{icon}, sort_value=#{sortValue}
     </update>
+    <select id="listTopicTreeByParentCode" resultType="course.linkflower.link.oneframework.members.vo.topic.TopicTreeVo">
+        SELECT
+        ID.level,
+        DATA.*
+        FROM
+        (SELECT
+        @ids AS _ids,
+        (SELECT
+        @ids := GROUP_CONCAT(id)
+        FROM
+        topic
+        WHERE FIND_IN_SET(parent_id, @ids)) AS cids,
+        @l := @l + 1 AS LEVEL
+        FROM
+        topic,
+        (SELECT
+        @ids := (select id from topic where code = #{code}),
+        @l := 0) b
+        WHERE @ids IS NOT NULL) id,
+        topic DATA
+        WHERE FIND_IN_SET(DATA.id, ID._ids)
+        ORDER BY LEVEL,
+        id ;
+    </select>
 </mapper>
