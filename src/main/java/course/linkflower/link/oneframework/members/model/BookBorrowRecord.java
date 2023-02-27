@@ -19,8 +19,8 @@ public class BookBorrowRecord {
         private long bookId;
         private long bookInforId;
         private int status;
-        private Date startDate;
-        private Date endDate;
-        private Date bakckDate;
+        private String startDate;
+        private String endDate;
+        private String bakckDate;
         private String remark;
 }

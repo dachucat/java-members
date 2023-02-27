@@ -20,5 +20,4 @@ public interface BorrowRecordService {
     void deleteBorrowRecord (DeleteBorrowRecordDto deleteBorrowRecordDto);
     BorrowRecordVo getBorrowRecordById(SearchBorrowRecordDto searchBorrowRecordDto);
 
-    Result<PageModelResult<List<BookDetailVo>>> listBookByDate(SearchByDateDto searchByDateDto);
 }

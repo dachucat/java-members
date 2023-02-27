@@ -3,6 +3,7 @@ package course.linkflower.link.oneframework.members.vo.book;
 import course.linkflower.link.oneframework.members.dto.book.BookShortInfoVo;
 import course.linkflower.link.oneframework.members.dto.bookShelf.BookShelfInfoVo;
 import course.linkflower.link.oneframework.members.model.Book;
+import course.linkflower.link.oneframework.members.model.BookBorrowRecord;
 import course.linkflower.link.oneframework.members.model.BorrowRecord;
 import course.linkflower.link.oneframework.members.vo.bookInfo.BookInforShortVo;
 import course.linkflower.link.oneframework.members.vo.borrowRecord.BorrowRecordInfoVo;
@@ -33,7 +34,7 @@ public class BookDetailVo {
 
     private PublisherInfoVo publisher;
 
-    public BookDetailVo loadFrom(BorrowRecord r) {
+    public BookDetailVo loadFrom(BookBorrowRecord r) {
         if (r != null) {
             id = String.valueOf(r.getId());
         }

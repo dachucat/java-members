@@ -51,8 +51,4 @@ public class BorrowRecordController {
         return borrowRecordService.getBorrowRecordById(searchBorrowRecordDto);
     }
 
-    @PostMapping("/listBookByDate")
-    public Result<PageModelResult<List<BookDetailVo>>> listBookByDate(@RequestBody SearchByDateDto dto) {
-        return borrowRecordService.listBookByDate(dto);
-    }
 }

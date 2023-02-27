@@ -16,8 +16,8 @@ import java.util.Date;
 public class BorrowCard extends Model<BorrowCard> {
     private long id;
     private long clientId;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private byte status;
     private byte level;
     private long bookCount;

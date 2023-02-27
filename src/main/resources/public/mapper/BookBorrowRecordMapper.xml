@@ -9,4 +9,31 @@
         #{item}
     </foreach>
     </select>
+    <select id="getBookBorrowRecordById" resultType="course.linkflower.link.oneframework.members.model.BookBorrowRecord">
+        select * from book_borrow_record where id= #{id} limit 1;
+    </select>
+    <insert id="save"  parameterType="course.linkflower.link.oneframework.members.model.BookBorrowRecord"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO book_borrow_record ( `client_id` , `borrow_id` , `book_id` , `book_infor_id` ,`start_date`)
+        VALUES(#{clientId},#{borrowId},#{bookId},#{bookInforId},#{startDate})
+    </insert>
+    <update id="delete">
+        delete from book_borrow_record where id = #{id}
+    </update>
+    <update id="update">
+        update book_borrow_record set
+        client_id = #{clientId} ,
+        borrow_id = #{borrowId} ,
+        book_id = #{bookId} ,
+        book_infor_id = #{bookInforId} ,
+        start_date = #{startDate}
+    </update>
+    <select id="listByDate" resultType="course.linkflower.link.oneframework.members.model.BookBorrowRecord">
+        select * from book_borrow_record where start_date >= #{starDate} and (end_date <![CDATA[ >= ]]> #{endDate} or end_date is null)
+        order by start_date desc limit #{pageStart}, #{pageCount}
+    </select>
+
+    <select id="getByDateTotal" resultType="int">
+        select count(*) from book_borrow_record where start_date >= #{starDate} and (end_date <![CDATA[ >= ]]> #{endDate} or end_date is null)
+    </select>
+
 </mapper>

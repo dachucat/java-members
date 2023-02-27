@@ -10,8 +10,8 @@ import java.util.Date;
 public class BorrowCardVo {
     private String id;
     private String clientId;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private byte status;
     private byte level;
     private String bookCount;
