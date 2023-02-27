@@ -22,8 +22,9 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public TopicVo add(AddDto addDto) {
-        topicMapper.add(addDto.toModel(addDto));
-        return topicMapper.getTopicById(Long.parseLong(addDto.getId()));
+        Topic top = addDto.toModel(addDto);
+        topicMapper.add(top);
+        return topicMapper.getTopicById(top.getId());
     }
 
     @Override
