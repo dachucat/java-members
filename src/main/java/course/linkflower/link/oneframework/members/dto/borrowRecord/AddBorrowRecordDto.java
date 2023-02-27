@@ -5,4 +5,5 @@ import lombok.Data;
 public class AddBorrowRecordDto {
     private String clientId;
     private String startDate;
+    private String borrowCardId;
 }

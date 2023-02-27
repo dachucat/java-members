@@ -14,9 +14,9 @@ import course.linkflower.link.oneframework.members.vo.book.BookDetailVo;
 import course.linkflower.link.oneframework.members.vo.bookInfo.BookInforShortVo;
 import course.linkflower.link.oneframework.members.vo.borrowRecord.BorrowRecordVo;
 import course.linkflower.link.oneframework.members.vo.client.ClientInfoVo;
-import course.linkflower.link.oneframework.members.vo.client.ClientVo;
 import course.linkflower.link.oneframework.members.vo.publisher.PublisherInfoVo;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.hssf.record.BookBoolRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,9 +40,10 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
 
     @Autowired
     PublisherMapper publisherMapper;
-
     @Autowired
     ClientMapper clientMapper;
+    @Autowired
+    BookBorrowRecordMapper bookBorrowRecordMapper;
 
     @Override
     public void addBorrowRecord(AddBorrowRecordDto addBorrowRecordDto) {
@@ -66,24 +67,12 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
 
     @Override
     public Result<PageModelResult<List<BookDetailVo>>> listBookByDate(SearchByDateDto searchByDateDto) {
-//        对信息层级进行分类： pageModelResult,List,BookDetailVo
-//        利用pageModelResult来存放所有信息
         PageModelResult<List<BookDetailVo>> ret = new PageModelResult<>();
-//        pageModelResult:总信息
-//        List<>：每页信息
-//        BookDetailVo:每本书信息
-//        利用List来存放每页信息
         List<BookDetailVo> retList = new ArrayList<>();
-//        将List与pageModelResult相匹配（将list放入pageModelResult中)
         ret.setData(retList);
 
-
-//        对输入的时间进行处理
-//        指定时间的转换格式
         SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
-//        为什么可能产生异常？
         try {
-//            将输入的时间由String转换为Date,endDate根据业务需要可以使用输入时间，也可以使用当前时间
             Date startDate = sdf.parse(searchByDateDto.getStartDate());
             Date endDate;
             if (!StringUtils.isEmpty(searchByDateDto.getEndDate())) {
@@ -91,47 +80,34 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
             } else {
                 endDate = new Date();
             }
-
-
-
-            //根据时间范围分页列出借书记录
-//            先把所有符合要求的借书记录先找出来
+            //分页根据时间范围列出借书记录
             List<BorrowRecord> records = borrowRecordMapper.listByDate(startDate, endDate,
                     searchByDateDto.getPageCount() * searchByDateDto.getPageNo(),
                     searchByDateDto.getPageCount());
 
-
-
             //根据时间范围列出借书记录数量
             int total = borrowRecordMapper.getByDateTotal(startDate, endDate);
-            //计算共有多少页（pageCount)
+            //计算分页数量
             int pageCount = total / searchByDateDto.getPageCount();
             if ((total - (pageCount * searchByDateDto.getPageCount())) > 0) {
                 pageCount += 1;
             }
-//            将页数和记录数量放入pageModelResult
             ret.setPageCount(pageCount);
             ret.setTotal(total);
 
-
-
-
             //从借书记录中获取图书id到bookIds数组
             List<Long> bookIds = new ArrayList<>();
-            List<Long> clientIds=new ArrayList<>();
+            Map<Long, Boolean> clientIds = new HashMap<>();
             for (BorrowRecord r : records) {
                 bookIds.add(r.getBookId());
-                clientIds.add(r.getClientId());
+                //从借阅记录中获得借书用户的id
+                clientIds.put(r.getClientId(),Boolean.TRUE);
             }
 
-
-//            准备去重
-//            加载book能得到的id
             Map<Long, Boolean> bookInfoIdMap = new HashMap<>();
             Map<Long, Book> bookMap = new HashMap<>();
             Map<Long, Boolean>  bookShelfIds = new HashMap<>();
             //预防sql in 字段为空 select * from book where id in (1, 2, 3), select * from book where id in ()
-//            得到bookId,bookInforId,bookshelfId(不重复）
             if (bookIds.size() > 0) {
                 for (Book b :bookMapper.listByIds(bookIds)) {
                     //根据book id 的索引，存储book 实体到 bookMap
@@ -142,17 +118,11 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
                 }
             }
 
-            Map<Long,Client> clientMap=new HashMap<>();
-            if (clientIds!=null){
-                for (Client c:clientMapper.listById(clientIds)){
-                    clientMap.put(c.getId(), c);
-                }
-            }
 
-
-//            得到bookinforid能得到的id
             Map<Long, Boolean>  publisherIds = new HashMap<>();
             Map<Long, BookInfo> bookInfoMap = new HashMap<>();
+            //获得借书记录
+
             if (bookInfoIdMap.size() > 0) {
                 //根据索引到的bookInforId列出图书信息，并放置到bookInfoMap
                 for (BookInfo bi : bookInfoMapper.listByIds(bookInfoIdMap.keySet())) {
@@ -164,7 +134,7 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
             Map<Long, Publisher> publisherMap = new HashMap<>();
             if (publisherIds.size() > 0) {
                 //根据索引到的bookInforId列出图书信息，并放置到bookInfoMap
-                for (Publisher pi : publisherMapper.listByIds(publisherIds.keySet())) {
+                for (Publisher pi : publisherMapper. listByIds(publisherIds.keySet())) {
                     publisherMap.put(pi.getId(), pi);
                 }
             }
@@ -177,29 +147,53 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
                 }
             }
 
+            Map<Long , BookBorrowRecord> bookBorrowRecordMap= new HashMap<>();
+            Map<Long , Client> clientMap = new HashMap<>();
+            // 得到bookborrowrecords
+            //每一个clienId 有多个BookBorrowRecord
+            Map<Long, List<BookBorrowRecord>> bookBorrowRecords = new HashMap<>();
+            if (clientIds.size() > 0){
+                //根据索引到的clientId列出用户信息，并放置到clientMap
+                for (Client client : clientMapper.listByIds(clientIds.keySet())){
+                    clientMap.put(client.getId(), client);
+                    //根据clientids找到 bookborrowrecord
+                }
+                for (BookBorrowRecord bookborrowRecord : bookBorrowRecordMapper.listByIds(clientIds.keySet())){
+                    bookBorrowRecordMap.put( bookborrowRecord.getId() ,bookborrowRecord );
+                    // 得到bookborrowrecords
+                    List<BookBorrowRecord> l = bookBorrowRecords.get(bookborrowRecord.getClientId());
+                    if (l == null) {
+                        l = new ArrayList<>();
+                        bookBorrowRecords.put(bookborrowRecord.getClientId(), l);
+                    }
+                    l.add(bookborrowRecord);
+                }
+            }
+
             for (BorrowRecord r : records) {
                 BookDetailVo bd = new BookDetailVo();
                 Book b = bookMap.get(r.getBookId());
                 BookInfo bisi = null;
                 Publisher p = null;
                 Bookshelf bs = null;
-                Client client= null;
-                if (client!=null){
-                    client=clientMap.get(r.getClientId());
-                }
+                Client c = null;
+                ClientInfoVo cinfo = new ClientInfoVo();
                 if (b != null) {
                     bisi = bookInfoMap.get(b.getBookInforId());
                     if (bisi != null) {
                         p = publisherMap.get(bisi.getPublisherId());
                     }
                     bs = bookShelfMap.get(b.getBookShelfId());
+                    c = clientMap.get(r.getClientId());
                 }
+
+
                 bd.loadFrom(r);
-                bd.setBorrower(new ClientInfoVo().loadFrom(client));
                 bd.setBook(new BookShortInfoVo().loadFrom(b));
                 bd.setBookInfo(new BookInforShortVo().loadFrom(bisi));
                 bd.setBookShelf(new BookShelfInfoVo().loadFrom(bs));
                 bd.setPublisher(new PublisherInfoVo().loadFrom(p));
+                bd.setBorrower(cinfo.loadFrom(c));
 
                 /*
                 ok

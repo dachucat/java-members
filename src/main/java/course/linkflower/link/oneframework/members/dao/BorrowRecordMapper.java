@@ -14,7 +14,7 @@ import java.util.List;
 
 @Mapper
 public interface BorrowRecordMapper extends SuperMapper<BorrowRecord> {
-    int save(@Param("clientId") long clientId , @Param("startDate") String startDate);
+    int save(@Param("clientId") long clientId , @Param("startDate") String startDate );
 
     int delete(@Param("id") Long id);
 

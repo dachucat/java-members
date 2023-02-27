@@ -13,5 +13,5 @@ import java.util.List;
 public interface ClientMapper extends SuperMapper<ClientMapper> {
     List<ClientWalletVo> listWalletByClientId(@Param("id") long id);
 
-    List<Client> listById(@Param("clientIds") Collection<Long> clientIds);
+    List<Client> listByIds(@Param("ids") Collection<Long> ids);
 }

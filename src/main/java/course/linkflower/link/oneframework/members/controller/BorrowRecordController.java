@@ -31,8 +31,9 @@ public class BorrowRecordController {
     BorrowRecordService borrowRecordService;
 
     @PostMapping("/add")
-    public void add(@RequestBody AddBorrowRecordDto addBorrowRecordDto) {
+    public Result add(@RequestBody AddBorrowRecordDto addBorrowRecordDto) {
         borrowRecordService.addBorrowRecord(addBorrowRecordDto);
+        return  Result.succeed();
     }
 
     @PostMapping("/delete")
