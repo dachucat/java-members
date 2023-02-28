@@ -6,6 +6,14 @@
         select * from topic where id=#{id}
     </select>
 
+    <select id="countByCode" resultType="int">
+        select count(*) from topic where code = #{code}
+    </select>
+
+    <select id="countByCodeAndId" resultType="int">
+        select count(*) from topic where code = #{code} and id != #{id}
+    </select>
+
     <insert id="add" parameterType="course.linkflower.link.oneframework.members.model.Topic" useGeneratedKeys="true" keyProperty="id">
         insert into topic(name, parent_id, parent1_id, column_type, is_hot, icon, sort_value)
         values(#{name},#{parentId},#{parent1Id},#{columnType},#{isHot},#{icon},#{sortValue})

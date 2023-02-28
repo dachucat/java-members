@@ -1,7 +1,5 @@
 package course.linkflower.link.oneframework.members.vo.topic;
 
-
-import course.linkflower.link.oneframework.members.model.Topic;
 import lombok.Data;
 
 import java.util.ArrayList;

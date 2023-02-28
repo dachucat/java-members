@@ -8,14 +8,14 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@TableName("topic")
-public class Topic {
+@TableName("menu")
+public class menu {
     private long id;
     private String name;
     private long parentId;
-    private long parent1Id;
     private int columnType;
-    private int isHot;
+    private String barcode;
+    private String description;
     private int sortValue;
     private String icon;
     private String code;

@@ -2,10 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="course.linkflower.link.oneframework.members.dao.ClientMapper">
-    <select id="listById" resultType="course.linkflower.link.oneframework.members.model.Client">
+
+    <select id="listByIds" resultType="course.linkflower.link.oneframework.members.model.Client">
         select * from client where id in
-        <foreach item="clientIds" index="index" collection="clientIds" open="(" separator="," close=")">
-            #{clientIds}
+        <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+            #{item}
         </foreach>
     </select>
+
 </mapper>

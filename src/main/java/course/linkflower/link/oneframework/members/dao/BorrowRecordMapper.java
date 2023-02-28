@@ -22,6 +22,5 @@ public interface BorrowRecordMapper extends SuperMapper<BorrowRecord> {
 
     BorrowRecord borrowRecordSearchByid (@Param("id") Long id);
 
-    List<BorrowRecord> listByDate(@Param("starDate")Date startDate, @Param("endDate") Date endDate, @Param("pageStart")  int pageStart, @Param("pageCount")  int pageCount);
-    int getByDateTotal(@Param("starDate")Date startDate, @Param("endDate") Date endDate);
+
 }

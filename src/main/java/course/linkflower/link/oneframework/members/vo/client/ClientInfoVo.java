@@ -8,7 +8,6 @@ import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 public class ClientInfoVo {
     private String id;
     private String name;
-    private String barcode;
     public ClientInfoVo loadFrom(Client client){
         if (client != null){
             id = String.valueOf(client.getId());
