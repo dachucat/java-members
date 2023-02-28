@@ -21,6 +21,5 @@ public interface TopicService {
     Result deleteTopic (DeleteTopicDto deleteTopicDto);
     Result<TopicVo> getTopicById(long id);
     Result<TopicTreeVo> listTopicTreeByCode(String code);
-
     TopicVo getTopicByIdIn(long id);
 }

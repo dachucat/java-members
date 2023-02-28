@@ -15,7 +15,6 @@ import java.util.List;
 public interface TopicMapper extends SuperMapper<Topic> {
 
     int countByCode(@Param("code") String code);
-
     int countByCodeAndId(@Param("code") String code, @Param("id") long id);
     int save(Topic topic);
     int delete(@Param("id") long id);
