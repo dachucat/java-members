@@ -1,10 +1,19 @@
 package course.linkflower.link.oneframework.members.dto.topic;
 
+import course.linkflower.link.oneframework.common.consts.BaseErrorContst;
 import course.linkflower.link.oneframework.members.model.Topic;
 import lombok.Data;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 @Data
 public class AddTopicDto {
+
+    @NotNull
+    @Min(value = 1)
+    @Max(value = 64)
     private String name;
     private String parentId;
     private String parent1Id;
