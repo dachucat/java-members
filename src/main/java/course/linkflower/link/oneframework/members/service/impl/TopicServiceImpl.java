@@ -8,10 +8,13 @@ import course.linkflower.link.oneframework.members.dto.topic.UpdateTopicDto;
 import course.linkflower.link.oneframework.members.model.Topic;
 import course.linkflower.link.oneframework.members.service.TopicService;
 import course.linkflower.link.oneframework.members.vo.publisher.PublisherVo;
+import course.linkflower.link.oneframework.members.vo.topic.TopicTreeVo;
 import course.linkflower.link.oneframework.members.vo.topic.TopicVo;
 import net.sf.jsqlparser.statement.select.Top;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TopicServiceImpl implements TopicService {
@@ -40,5 +43,11 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public TopicVo getTopicById(SearchTopicDto searchTopicDto) {
         return new TopicVo().loadFrom(topicMapper.getTopicById(Long.parseLong(searchTopicDto.getId())));
+    }
+
+    @Override
+    public TopicTreeVo listTopicTreeByCode(String code) {
+        List<TopicTreeVo> topics = topicMapper.listTopicTreeByParentCode(code);
+            return TopicTreeVo.loadFromList(topics);
     }
 }

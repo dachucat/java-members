@@ -16,8 +16,12 @@ public class AddTopicDto {
     public Topic toModel(){
         Topic topic = new Topic();
         topic.setName(name);
-        topic.setParentId(Long.valueOf(parentId));
-        topic.setParent1Id(Long.valueOf(parent1Id));
+        if(parentId!=null){
+            topic.setParentId(Long.valueOf(parentId));
+        }
+        if (parent1Id!=null){
+            topic.setParent1Id(Long.valueOf(parent1Id));
+        }
         topic.setColumnType(columnType);
         topic.setIsHot(isHot);
         topic.setSortValue(sortValue);

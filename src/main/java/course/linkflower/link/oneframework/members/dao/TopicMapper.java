@@ -4,6 +4,7 @@ import course.linkflower.link.oneframework.db.mapper.SuperMapper;
 import course.linkflower.link.oneframework.members.model.BookInfo;
 import course.linkflower.link.oneframework.members.model.Publisher;
 import course.linkflower.link.oneframework.members.model.Topic;
+import course.linkflower.link.oneframework.members.vo.topic.TopicTreeVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,5 +17,5 @@ public interface TopicMapper extends SuperMapper<Topic> {
     int delete(@Param("id") long id);
     int update(Topic topic);
     Topic getTopicById (@Param("id") long id);
-
+    List<TopicTreeVo> listTopicTreeByParentCode(@Param("code") String code);
 }

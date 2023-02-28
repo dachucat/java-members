@@ -1,6 +1,7 @@
 package course.linkflower.link.oneframework.members.controller;
 
 import course.linkflower.link.oneframework.common.model.Result;
+import course.linkflower.link.oneframework.members.dto.base.CodeDto;
 import course.linkflower.link.oneframework.members.dto.publisher.AddPublisherDto;
 import course.linkflower.link.oneframework.members.dto.publisher.DeletePublisherDto;
 import course.linkflower.link.oneframework.members.dto.publisher.SearchPublisherDto;
@@ -11,6 +12,7 @@ import course.linkflower.link.oneframework.members.dto.topic.SearchTopicDto;
 import course.linkflower.link.oneframework.members.dto.topic.UpdateTopicDto;
 import course.linkflower.link.oneframework.members.service.TopicService;
 import course.linkflower.link.oneframework.members.vo.publisher.PublisherVo;
+import course.linkflower.link.oneframework.members.vo.topic.TopicTreeVo;
 import course.linkflower.link.oneframework.members.vo.topic.TopicVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +48,9 @@ public class TopicController {
     @PostMapping("/search")
     public Result<TopicVo> search(@RequestBody SearchTopicDto searchTopicDto) {
         return Result.succeed(topicService.getTopicById(searchTopicDto));
+    }
+    @PostMapping("/listTopicTreeByCode")
+    public Result<TopicTreeVo> listTopicTreeByCode(@RequestBody CodeDto codeDto){
+        return Result.succeed(topicService.listTopicTreeByCode(codeDto.getCode()));
     }
 }

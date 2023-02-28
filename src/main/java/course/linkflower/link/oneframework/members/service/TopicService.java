@@ -9,6 +9,7 @@ import course.linkflower.link.oneframework.members.dto.topic.DeleteTopicDto;
 import course.linkflower.link.oneframework.members.dto.topic.SearchTopicDto;
 import course.linkflower.link.oneframework.members.dto.topic.UpdateTopicDto;
 import course.linkflower.link.oneframework.members.vo.publisher.PublisherVo;
+import course.linkflower.link.oneframework.members.vo.topic.TopicTreeVo;
 import course.linkflower.link.oneframework.members.vo.topic.TopicVo;
 
 public interface TopicService {
@@ -16,4 +17,5 @@ public interface TopicService {
     TopicVo updateTopic(UpdateTopicDto updateTopicDto);
     void deleteTopic (DeleteTopicDto deleteTopicDto);
     TopicVo getTopicById(SearchTopicDto searchTopicDto);
+    TopicTreeVo listTopicTreeByCode(String code);
 }
