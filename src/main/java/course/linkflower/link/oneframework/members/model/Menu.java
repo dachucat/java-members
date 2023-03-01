@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @TableName("menu")
-public class menu {
+public class Menu {
     private long id;
     private String name;
     private long parentId;
@@ -19,4 +19,5 @@ public class menu {
     private int sortValue;
     private String icon;
     private String code;
+    private String url;
 }
