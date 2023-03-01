@@ -24,15 +24,17 @@ public class MenuTreeVo {
     public static MenuTreeVo loadFromList(List<MenuTreeVo> list) {
         if (list.size() > 0) {
             MenuTreeVo root = list.get(0);
-            Map<String, MenuTreeVo> MenuTreeVoMap = new HashMap<>();
-            for (MenuTreeVo l : list) {
-                MenuTreeVoMap.put(l.getId(), l);
-                MenuTreeVo parent = MenuTreeVoMap.get(l.getParentId());
+            Map<String, MenuTreeVo> menuTreeVoMap = new HashMap<>();
+            for (int i = 1; i < list.size(); i++) {
+                menuTreeVoMap.put(list.get(i).getId(),list.get(i));
+                MenuTreeVo parent = menuTreeVoMap.get(list.get(i).getParentId());
                 if (parent != null) {
-                    parent.childs.add(l);
+                    parent.childs.add(list.get(i));
+                }else{
+                    root=list.get(i);
                 }
+                return root;
             }
-            return root;
         }
         return null;
     }

@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+import java.util.List;
+
 @RestController
 @Slf4j
 @RequestMapping("/menu")
@@ -31,8 +34,8 @@ public class MenuController {
     @Autowired
     MenuService menuService;
     @PostMapping("/listMenuTreeByCode")
-    public Result<MenuTreeVo> listMenuTreeByCode (@RequestBody CodeDto codeDto){
-       return menuService.listMenuTreeByCode(codeDto.getCode()) ;
+    public Result<MenuTreeVo> listMenuTreeByCode (@RequestBody List<CodeDto> codeDto){
+       return menuService.listMenuTreeByCode(codeDto) ;
     }
     @PostMapping("/add")
     public Result<MenuVo> add(@Validated @RequestBody AddMenuDto addMenuDto) {

@@ -3,6 +3,7 @@ package course.linkflower.link.oneframework.members.service.impl;
 import course.linkflower.link.oneframework.common.consts.BaseErrorContst;
 import course.linkflower.link.oneframework.common.model.Result;
 import course.linkflower.link.oneframework.members.dao.MenuMapper;
+import course.linkflower.link.oneframework.members.dto.base.CodeDto;
 import course.linkflower.link.oneframework.members.dto.menu.AddMenuDto;
 import course.linkflower.link.oneframework.members.dto.menu.DeleteMenuDto;
 import course.linkflower.link.oneframework.members.dto.menu.SearchMenuDto;
@@ -52,8 +53,11 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Result<MenuTreeVo> listMenuTreeByCode(String code) {
-        List<MenuTreeVo> topics = menuMapper.listMenuTreeByParentCode(code);
-        return Result.succeed(MenuTreeVo.loadFromList(topics));
+    public Result<MenuTreeVo> listMenuTreeByCode(List<CodeDto> codeDtos) {
+        for (CodeDto cd : codeDtos){
+            List<MenuTreeVo> topics = menuMapper.listMenuTreeByParentCode(cd.getCode());
+            return Result.succeed(MenuTreeVo.loadFromList(topics));
+        }
+        return Result.succeed();
     }
 }
