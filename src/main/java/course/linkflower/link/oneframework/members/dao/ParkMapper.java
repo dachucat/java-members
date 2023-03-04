@@ -3,8 +3,8 @@ package course.linkflower.link.oneframework.members.dao;
 import course.linkflower.link.oneframework.common.dto.CodeDto;
 import course.linkflower.link.oneframework.db.mapper.SuperMapper;
 import course.linkflower.link.oneframework.members.model.Park;
+import course.linkflower.link.oneframework.members.vo.park.AddParkVo;
 import course.linkflower.link.oneframework.members.vo.park.ParkTreeVo;
-import course.linkflower.link.oneframework.members.vo.park.ParkVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,5 +18,9 @@ public interface ParkMapper extends SuperMapper<ParkMapper> {
 
     int add(Park park);
 
-    ParkVo getParkById(@Param("id") long id);
+    AddParkVo getParkById(@Param("id") long id);
+
+    int update(Park park);
+
+    int countUrlDiffId(long id);
 }

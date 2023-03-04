@@ -4,9 +4,8 @@ import course.linkflower.link.oneframework.members.model.Park;
 import lombok.Data;
 
 @Data
-public class ParkDto {
+public class AddParkDto {
     private String name;
-    private String id;
     private String parentId;
     private String icon;
     private String url;
@@ -15,8 +14,7 @@ public class ParkDto {
     private String introduction;
     private String barcode;
 
-    public Park toModel(ParkDto parkDto) {
-
+    public Park toModel(AddParkDto addParkDto) {
         Park park=new Park();
         park.setName(name);
         if (parentId==null)
@@ -32,7 +30,6 @@ public class ParkDto {
         park.setLevel(level);
         park.setIntroduction(introduction);
         park.setBarcode(barcode);
-        park.setId(Long.parseLong(id));
         return park;
     }
 }

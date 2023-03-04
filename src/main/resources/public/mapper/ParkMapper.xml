@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="course.linkflower.link.oneframework.members.dao.ParkMapper">
+<mapper namespace="course.linkflower.link.oneframework.members.dao.AddParkMapper">
     <select id="listParkTreeByCode" resultType="course.linkflower.link.oneframework.members.vo.park.ParkTreeVo">
         SELECT ID.level, DATA.* FROM (SELECT @ids AS _ids, (SELECT @ids := GROUP_CONCAT(id) FROM park WHERE FIND_IN_SET(parent_id, @ids)) AS cids, @l := @l + 1 AS LEVEL FROM park, (SELECT @ids := (select id from park where code = #{code}), @l := 0) b WHERE @ids IS NOT NULL) id, park DATA WHERE FIND_IN_SET(DATA.id, ID._ids) ORDER BY LEVEL, id ;
     </select>
@@ -11,11 +11,20 @@
         values(#{icon},#{introduction},#{barcode},#{name},#{level},#{ordering},#{url},#{parentId})
     </insert>
 
-    <select id="getParkById" resultType="course.linkflower.link.oneframework.members.vo.park.ParkVo">
+    <select id="getParkById" resultType="course.linkflower.link.oneframework.members.vo.park.AddParkVo">
         select * from park where id=#{id}
     </select>
 
     <select id="countUrl" resultType="int">
         select count(*) from park where url=#{url}
     </select>
+
+    <select id="countUrlDiffId" resultType="int">
+        select count(*) from park where url=#{url} and id != #{id}
+    </select>
+    
+    <update id="update">
+        update park where id=#{id} set icon=#{icon},introduction=#{introduction},barcode=#{barcode},name=#{name},level=#{level},
+        ordering=#{ordering},url=#{url},parent_id=#{parentId}
+    </update>
 </mapper>
