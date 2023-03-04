@@ -5,4 +5,17 @@
     <select id="listParkTreeByCode" resultType="course.linkflower.link.oneframework.members.vo.park.ParkTreeVo">
         SELECT ID.level, DATA.* FROM (SELECT @ids AS _ids, (SELECT @ids := GROUP_CONCAT(id) FROM park WHERE FIND_IN_SET(parent_id, @ids)) AS cids, @l := @l + 1 AS LEVEL FROM park, (SELECT @ids := (select id from park where code = #{code}), @l := 0) b WHERE @ids IS NOT NULL) id, park DATA WHERE FIND_IN_SET(DATA.id, ID._ids) ORDER BY LEVEL, id ;
     </select>
+
+    <insert id="add" parameterType="course.linkflower.link.oneframework.members.model.Park" useGeneratedKeys="true" keyProperty="id">
+        insert into park(icon,introduction,barcode,name,level,ordering,url,parent_id)
+        values(#{icon},#{introduction},#{barcode},#{name},#{level},#{ordering},#{url},#{parentId})
+    </insert>
+
+    <select id="getParkById" resultType="course.linkflower.link.oneframework.members.vo.park.ParkVo">
+        select * from park where id=#{id}
+    </select>
+
+    <select id="countUrl" resultType="int">
+        select count(*) from park where url=#{url}
+    </select>
 </mapper>

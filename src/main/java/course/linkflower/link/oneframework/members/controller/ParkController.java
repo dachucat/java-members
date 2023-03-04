@@ -2,8 +2,10 @@ package course.linkflower.link.oneframework.members.controller;
 
 import course.linkflower.link.oneframework.common.dto.CodeDto;
 import course.linkflower.link.oneframework.common.model.Result;
+import course.linkflower.link.oneframework.members.dto.park.ParkDto;
 import course.linkflower.link.oneframework.members.service.ParkService;
 import course.linkflower.link.oneframework.members.vo.park.ParkTreeVo;
+import course.linkflower.link.oneframework.members.vo.park.ParkVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -23,5 +25,10 @@ public class ParkController {
     @PostMapping("/listParkTreeByCode")
     public Result<ParkTreeVo> listParkTreeByCode(@RequestBody CodeDto codeDto){
         return Result.succeed(parkService.ListParkTreeByCodeVo(codeDto));
+    }
+
+    @PostMapping("/add")
+    public Result<ParkVo> add(@RequestBody ParkDto parkDto){
+        return parkService.add(parkDto);
     }
 }

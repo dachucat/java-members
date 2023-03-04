@@ -14,9 +14,9 @@ public class Park {
     private long id;
     private Long parentId;
     private String icon;
-    private String code;
+    private String url;
     private Long ordering;
-    private byte type;
+    private byte level;
     private String introduction;
     private String barcode;
 }
