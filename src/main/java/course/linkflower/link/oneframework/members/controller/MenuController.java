@@ -34,8 +34,8 @@ public class MenuController {
     @Autowired
     MenuService menuService;
     @PostMapping("/listMenuTreeByCode")
-    public Result<MenuTreeVo> listMenuTreeByCode (@RequestBody List<CodeDto> codeDto){
-       return menuService.listMenuTreeByCode(codeDto) ;
+    public Result<MenuTreeVo> listMenuTreeByCode (@RequestBody CodeDto codeDto){
+        return menuService.listMenuTreeByCode(codeDto.getCode()) ;
     }
     @PostMapping("/add")
     public Result<MenuVo> add(@Validated @RequestBody AddMenuDto addMenuDto) {

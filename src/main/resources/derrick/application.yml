@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://${e2cef.datasource.ip}:3306/five-eight?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
+    url: jdbc:mysql://${e2cef.datasource.ip}:3306/five-and-eight?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
     username: ${e2cef.datasource.username}
     password: ${e2cef.datasource.password}
     driver-class-name: com.mysql.cj.jdbc.Driver

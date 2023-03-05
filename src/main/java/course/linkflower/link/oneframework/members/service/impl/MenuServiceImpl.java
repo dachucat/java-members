@@ -53,11 +53,8 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Result<MenuTreeVo> listMenuTreeByCode(List<CodeDto> codeDtos) {
-        for (CodeDto cd : codeDtos){
-            List<MenuTreeVo> topics = menuMapper.listMenuTreeByParentCode(cd.getCode());
-            return Result.succeed(MenuTreeVo.loadFromList(topics));
-        }
-        return Result.succeed();
+    public Result<MenuTreeVo> listMenuTreeByCode(String code) {
+        List<MenuTreeVo> topics = menuMapper.listMenuTreeByParentCode(code);
+        return Result.succeed(MenuTreeVo.loadFromList(topics));
     }
 }

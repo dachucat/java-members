@@ -16,5 +16,5 @@ public interface MenuService {
     Result<MenuVo> updateMenu(UpdateMenuDto updateMenuDto);
     Result deleteMenu(DeleteMenuDto deleteMenuDto);
     Result<MenuVo> getMenuById(SearchMenuDto searchMenuDto);
-    Result<MenuTreeVo> listMenuTreeByCode(List<CodeDto> codeDtos);
+    Result<MenuTreeVo> listMenuTreeByCode(String code);
 }

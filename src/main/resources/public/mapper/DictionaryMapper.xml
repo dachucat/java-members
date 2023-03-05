@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="course.linkflower.link.oneframework.members.dao.DictionaryMapper">
+    <select id="getDictionaryById" resultType="course.linkflower.link.oneframework.members.model.Dictionary">
+        select * from dictionary where id=#{id}
+    </select>
+
+    <insert id="save" parameterType="course.linkflower.link.oneframework.members.model.Dictionary" useGeneratedKeys="true" keyProperty="id">
+        insert into dictionary (`type`, `key`, `value`)
+        values(#{type},#{key},#{value})
+    </insert>
+
+    <delete id="delete">
+        delete from dictionary where id=#{id}
+    </delete>
+    <update id="update" parameterType="course.linkflower.link.oneframework.members.model.Dictionary" useGeneratedKeys="true">
+        update dictionary set `type`=#{type},`key`=#{key},`value` = #{value} where id = #{id}
+    </update>
+</mapper>
